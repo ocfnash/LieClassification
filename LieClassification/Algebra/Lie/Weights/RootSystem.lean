@@ -10,10 +10,6 @@ variable {K L : Type*}
   [Field K] [CharZero K] [LieRing L] [LieAlgebra K L] [FiniteDimensional K L]
   (H : LieSubalgebra K L) [H.IsCartanSubalgebra] [IsTriangularizable K H L]
 
-instance [IsSimple K L] :
-    (rootSystem H).IsIrreducible :=
-  sorry
-
 lemma isSimple_of_isIrreducible_rootSystem [IsSemisimple K L] (h : (rootSystem H).IsIrreducible) :
     IsSimple K L :=
   sorry
