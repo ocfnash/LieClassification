@@ -70,7 +70,7 @@ open scoped Classical in
 def _root_.LieAlgebra.equiv_rootsystem_lieAlgebra {R L : Type*} [Field R] [CharZero R]
     [LieRing L] [LieAlgebra R L] [FiniteDimensional R L] [LieAlgebra.IsSimple R L]
     (H : LieSubalgebra R L) [H.IsCartanSubalgebra] [IsTriangularizable R H L]
-    (b : (LieAlgebra.IsKilling.rootSystem H).Base) [Fintype b.support] :
+    (b : (LieAlgebra.IsKilling.rootSystem H).Base) :
     L ≃ₗ⁅R⁆ lieAlgebra b :=
   sorry
 
