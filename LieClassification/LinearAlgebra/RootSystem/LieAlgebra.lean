@@ -1,7 +1,7 @@
 import Mathlib.Algebra.Lie.CartanExists
 import Mathlib.Algebra.Lie.Matrix
 import Mathlib.Algebra.Lie.Semisimple.Lemmas
-import Mathlib.LinearAlgebra.RootSystem.GeckConstruction
+import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Basic
 import Mathlib.LinearAlgebra.RootSystem.Hom
 import LieClassification.Algebra.Lie.Weights.RootSystem
 import LieClassification.LinearAlgebra.RootSystem.Base
@@ -25,17 +25,11 @@ lemma linearIndependent_h :
     LinearIndependent (ι := b.support) R h := by
   sorry
 
-/-- Lemma 3.5 from [Geck](Geck2017). -/
-lemma lie_e_f_ne [P.IsReduced] [Fintype b.support] [Fintype ι] (i j : b.support) (h : i ≠ j) :
-    ⁅e i, f j⁆ = 0 := by
-  sorry
-
-variable [P.IsReduced] [Fintype b.support] [Fintype ι] [DecidableEq ι]
+variable [P.IsReduced] [Fintype ι] [DecidableEq ι]
 
 /-- RootSystemLemma 4.2 from [Geck](Geck2017).
 
-Will need `RootPairing.Base.cartanMatrix_sub_four_det_ne_zero`. Will also need some more API
-for root system bases. -/
+Will need `RootPairing.Base.cartanMatrix_sub_four_det_ne_zero`. -/
 instance : LieModule.IsIrreducible R (lieAlgebra b) (b.support ⊕ ι → R) := sorry
 
 variable (b) in
@@ -47,7 +41,7 @@ instance : (cartanSubalgebra' b).IsCartanSubalgebra := sorry
 def lieAlgebraEquiv_of_equiv {ι₂ M₂ N₂ : Type*}
     [AddCommGroup M₂] [Module R M₂] [AddCommGroup N₂] [Module R N₂]
     {P₂ : RootSystem ι₂ R M₂ N₂} [P₂.IsReduced] [P₂.IsCrystallographic] [P₂.IsIrreducible]
-    {b₂ : P₂.Base} [Fintype ι₂] [Fintype b₂.support] [DecidableEq ι₂]
+    {b₂ : P₂.Base} [Fintype ι₂] [DecidableEq ι₂]
     (e : P.Equiv P₂.toRootPairing) :
     lieAlgebra b ≃ₗ⁅R⁆ lieAlgebra b₂ := by
   -- Need to know Weyl group is transitive on bases but otherwise easy:
@@ -96,10 +90,10 @@ finite-dimensional simple Lie algebra arises from a root system. -/
 example :
     ∃ (H : LieSubalgebra R L) (_i : H.IsCartanSubalgebra)
       (P : RootSystem H.root R (Dual R H) H) (_ : P.IsCrystallographic)
-      (b : P.Base) (_ : Fintype b.support),
+      (b : P.Base),
       Nonempty (L ≃ₗ⁅R⁆ RootPairing.GeckConstruction.lieAlgebra b) := by
   obtain ⟨x, hx⟩ := exists_isCartanSubalgebra_engel R L
   obtain ⟨b⟩ := (IsKilling.rootSystem (LieSubalgebra.engel R x)).nonempty_base_of_isReduced
-  exact ⟨_, hx, _, _, b, _, ⟨equiv_rootsystem_lieAlgebra (LieSubalgebra.engel R x) b⟩⟩
+  exact ⟨_, hx, _, _, b, ⟨equiv_rootsystem_lieAlgebra (LieSubalgebra.engel R x) b⟩⟩
 
 end LieAlgebra

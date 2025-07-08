@@ -1,4 +1,4 @@
-import Mathlib.LinearAlgebra.RootSystem.Chain
+import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Lemmas
 
 namespace RootPairing
 
@@ -20,7 +20,10 @@ private lemma chainBotCoeff_mul_chainTopCoeff.aux_3 :
   sorry
 
 /-- This is `RootPairing.chainBotCoeff_mul_chainTopCoeff` except without the redundant
-assumption `[P.IsNotG2]`. -/
+assumption `[P.IsNotG2]`.
+
+Once this has been proved, we can drop `[P.IsNotG2]` from the downstream lemma
+`RootPairing.GeckConstruction.lie_e_f_ne`. -/
 lemma chainBotCoeff_mul_chainTopCoeff' :
     (P.chainBotCoeff i m + 1) * (P.chainTopCoeff j k + 1) =
       (P.chainTopCoeff j l + 1) * (P.chainBotCoeff i k + 1) :=
