@@ -1,7 +1,5 @@
 import Mathlib.Algebra.Lie.CartanExists
-import Mathlib.LinearAlgebra.RootSystem.BaseExists
-import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Semisimple
-import Mathlib.Algebra.Lie.Weights.RootSystem
+import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Basis
 import LieClassification.Algebra.Lie.CartanCriterion
 import LieClassification.LinearAlgebra.RootSystem.CartanMatrix
 
@@ -13,16 +11,6 @@ variable {ι R M N : Type*} [Fintype ι] [DecidableEq ι] [Field R] [CharZero R]
   [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
   {P : RootPairing ι R M N} [P.IsRootSystem] [P.IsReduced] [P.IsCrystallographic] [P.IsIrreducible]
   (b : P.Base)
-
-/-- See Lemma 4.6 from [Geck](Geck2017). -/
-instance : (cartanSubalgebra' b).IsCartanSubalgebra := sorry
-
-/-- `LieAlgebra.IsKilling.rootSystem` is left inverse to `RootPairing.GeckConstruction.lieAlgebra`.
-
-See Lemma 4.6 from [Geck](Geck2017). -/
-def rootSystem_cartanSubalgebra_equiv_self :
-    (LieAlgebra.IsKilling.rootSystem (cartanSubalgebra' b)).Equiv P :=
-  sorry
 
 open scoped Classical in
 /-- `LieAlgebra.IsKilling.rootSystem` is right inverse to `RootPairing.GeckConstruction.lieAlgebra`.
