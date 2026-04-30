@@ -1,6 +1,6 @@
 import Mathlib.Algebra.Lie.CartanExists
 import Mathlib.LinearAlgebra.RootSystem.GeckConstruction.Basis
-import LieClassification.Algebra.Lie.CartanCriterion
+import Mathlib.Algebra.Lie.CartanCriterion
 import LieClassification.LinearAlgebra.RootSystem.CartanMatrix
 
 open LieModule LieAlgebra LieAlgebra.IsKilling
